@@ -1,0 +1,61 @@
+[project]
+name = "sabangnet-price-uploader"
+version = "0.1.0"
+description = ""
+authors = [{ name = "Danyal Zia Khan", email = "danyalziakhan@gmail.com" }]
+requires-python = ">=3.10.0,<3.11"
+dependencies = [
+    "numpy==1.26.4",
+    "pandas>=1.5.1,<2",
+    "openpyxl>=3.0.10,<4",
+    "loguru>=0.6.0,<0.7",
+    "excelsheet>=0.1.2,<0.2",
+    "playwright>=1.52.0",
+    "dunia>=0.1.4",
+]
+
+[dependency-groups]
+dev = [
+    "black>=22.10.0,<23",
+    "isort>=5.10.1,<6",
+    "ipython>=8.5.0,<9",
+    "ipykernel>=6.16.1,<7",
+]
+
+[tool.black]
+line-length = 88
+exclude = '\.venv'
+include = '\.py$'
+
+[tool.isort]
+profile = "black"
+multi_line_output = 3                        # corresponds to -m  flag
+include_trailing_comma = true                # corresponds to -tc flag
+skip_glob = ".venv, */build, */.git, */temp"
+float_to_top = true
+known_first_party = "build"
+skip = []                                    # "build" is included in the default skip list
+lines_between_types = 1
+lines_after_imports = 2
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.pyright]
+include = ["."]
+exclude = ["**/node_modules", "**/__pycache__", ".venv", "**/temp"]
+venv = ".venv"
+stubPath = "stubs"
+
+reportMissingImports = true
+reportMissingTypeStubs = false
+reportUnknownParameterType = true
+reportUnknownMemberType = false
+reportUnknownVariableType = true
+reportUnknownArgumentType = true
+reportPrivateUsage = true
+reportUntypedFunctionDecorator = false
+reportImportCycles = true
+reportUnusedImport = "warning"
+reportUnknownLambdaType = false
